@@ -1,8 +1,12 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash
-
-app = Flask(__name__)
-app.secret_key = 'simple_secret_key'
-
+basedir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(basedir, 'templates'),
+    static_folder=os.path.join(basedir, 'static')
+)
+app.secret_key = 'your_secret_key_here'
 # In-memory storage for books
 books = [
     {"id": 1, "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "status": "Available"},
